@@ -18,24 +18,26 @@ import java.util.Optional;
 /** Draws the grid + the snake eating through it, frame by frame, into an animated GIF. */
 public final class Renderer {
 
-    private static final int CELL_SIZE = 11;
-    private static final int GAP = 3;
+    private static final int CELL_SIZE = 15;
+    private static final int GAP = 4;
     private static final int PITCH = CELL_SIZE + GAP;
-    private static final int MARGIN = 12;
-    private static final int ARC = 3;
+    private static final int MARGIN = 16;
+    private static final int ARC = 4;
     private static final int SNAKE_TAIL_LENGTH = 4;
-    private static final int FRAME_DELAY_MS = 55;
+    // GIF delays are stored in 10ms units, so this is 7 ticks (was 5)
+    private static final int FRAME_DELAY_MS = 70;
     private static final int HOLD_FRAMES_AT_END = 25;
 
-    private static final Color BACKGROUND = new Color(0xFF, 0xFF, 0xFF);
+    // GitHub's dark theme palette
+    private static final Color BACKGROUND = new Color(0x0D, 0x11, 0x17);
     private static final Color[] LEVEL_COLORS = {
-            new Color(0xEB, 0xED, 0xF0),
-            new Color(0x9B, 0xE9, 0xA8),
-            new Color(0x40, 0xC4, 0x63),
-            new Color(0x30, 0xA1, 0x4E),
-            new Color(0x21, 0x6E, 0x39),
+            new Color(0x16, 0x1B, 0x22),
+            new Color(0x0E, 0x44, 0x29),
+            new Color(0x00, 0x6D, 0x32),
+            new Color(0x26, 0xA6, 0x41),
+            new Color(0x39, 0xD3, 0x53),
     };
-    private static final Color SNAKE_HEAD = new Color(0x8B, 0x2B, 0xE2);
+    private static final Color SNAKE_HEAD = new Color(0xA3, 0x71, 0xF7);
 
     public void render(ContributionGrid grid, List<Cell> path, Path outputFile) throws IOException {
         Map<Cell, Integer> pathIndex = new HashMap<>();
